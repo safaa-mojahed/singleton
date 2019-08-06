@@ -11,6 +11,11 @@
  * Created by Basel.Altamimi on 8/4/2019.
  */
 
+/*
+ * getInstance method  source: https://www.callicoder.com/java-singleton-design-pattern-example/
+ */
+
+
 package Forms;
 
 import javax.swing.*;
@@ -29,7 +34,8 @@ public class SwingCalendar extends JFrame {
     JLabel label;
 
     // Todo: Refactor this constructor so the program will create only one copy of this object
-    SwingCalendar() { // Constructor
+    /** private constructor to prevent others from instantiating this class */
+    private SwingCalendar() { // Constructor
 
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         this.setTitle("Swing Calendar");
@@ -74,6 +80,14 @@ public class SwingCalendar extends JFrame {
 
         this.updateMonth();
 
+    }
+
+    /** Create an instance of the class at the time of class loading */
+    private static final SwingCalendar instance = new SwingCalendar();
+
+    /** Provide a global point of access to the instance */
+    public static SwingCalendar getInstance() {
+        return instance;
     }
 
     void updateMonth() {
